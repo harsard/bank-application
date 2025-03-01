@@ -44,5 +44,5 @@ All Accounts	curl -X GET http://localhost:8080/account/accounts
 All Customers	curl -X GET http://localhost:8080/customer/customers
 Single Account	curl -X GET http://localhost:8080/account/accounts/1
 
-### Cloud config refresh
-http://localhost:8888/actuator/refresh
+### Cloud config refresh -customer service
+curl -X POST http://localhost:8082/actuator/refresh
