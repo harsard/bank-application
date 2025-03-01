@@ -15,6 +15,17 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService service;
+    @Value("${message}")
+    private String message;
+
+    @GetMapping("/message")
+    public String getMessage() {
+        return message;
+    }
+    @GetMapping("/ping")
+    public String ping(){
+        return "pong";
+    }
 
     @PostMapping
     public CustomerDTO add(@RequestBody CustomerDTO dto) {
