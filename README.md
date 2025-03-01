@@ -32,7 +32,7 @@ cd ../customer-service
 mvn clean spring-boot:run
 
 
-ervice	Endpoint	cURL
+Service	Endpoint
 ✅ Account Service	Get All Accounts	curl -X GET http://localhost:8080/account/accounts
 ✅ Account Service	Get Account by ID	curl -X GET http://localhost:8080/account/accounts/1
 ✅ Customer Service	Get All Customers	curl -X GET http://localhost:8080/customer/customers
@@ -45,4 +45,4 @@ All Customers	curl -X GET http://localhost:8080/customer/customers
 Single Account	curl -X GET http://localhost:8080/account/accounts/1
 
 ### Cloud config refresh -customer service
-curl -X POST http://localhost:8082/actuator/refresh
+curl -X POST http://localhost:8082/api/v1/customers/actuator/refresh
