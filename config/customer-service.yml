@@ -27,4 +27,4 @@ eureka:
   instance:
     prefer-ip-address: true
 
-message: hi v3
+message: hi v4
