@@ -1,7 +1,7 @@
 package com.nagarro.banking.customer.service;
 
-import com.nagarro.banking.customer.client.AccountClient;
-import com.nagarro.banking.customer.dto.CustomerDto;
+import com.nagarro.banking.customer.client.AccountFeignClient;
+import com.nagarro.banking.customer.dto.CustomerDTO;
 import com.nagarro.banking.customer.entity.Customer;
 import com.nagarro.banking.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,32 +14,36 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerRepository repository;
-    private final AccountClient accountClient;
+    private final AccountFeignClient accountClient;
 
-    public CustomerDto addCustomer(CustomerDto dto) {
-
-        Customer customer = repository.save(CustomerMapper.toEntity(dto));
-        return CustomerMapper.toDto(customer);
+    public CustomerDTO addCustomer(CustomerDTO dto) {
+        Customer customer = new Customer(null, dto.getName(), dto.getEmail());
+        Customer saved = repository.save(customer);
+        return toDTO(saved);
     }
 
-    public List<CustomerDto> getAllCustomers() {
-        return repository.findAll().stream().map(CustomerMapper::toDto).toList();
+    public List<CustomerDTO> getAllCustomers() {
+        return repository.findAll().stream().map(this::toDTO).toList();
     }
 
-    public CustomerDto getCustomerById(Long id) {
-        Customer customer = repository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException("Customer not found"));
-        return CustomerMapper.toDto(customer);
+    public CustomerDTO getCustomer(Long id) {
+        return repository.findById(id).map(this::toDTO)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 
-    public CustomerDto updateCustomer(Long id, CustomerDto dto) {
+    public CustomerDTO updateCustomer(Long id, CustomerDTO dto) {
         Customer customer = repository.findById(id).orElseThrow();
         customer.setName(dto.getName());
-        return CustomerMapper.toDto(repository.save(customer));
+        customer.setEmail(dto.getEmail());
+        return toDTO(repository.save(customer));
     }
 
     public void deleteCustomer(Long id) {
         repository.deleteById(id);
-        accountClient.deleteAccountForCustomer(id); // Notify Account Service
+        accountClient.deleteAccountsByCustomer(id);
+    }
+
+    private CustomerDTO toDTO(Customer customer) {
+        return new CustomerDTO(customer.getId(), customer.getName(), customer.getEmail());
     }
 }

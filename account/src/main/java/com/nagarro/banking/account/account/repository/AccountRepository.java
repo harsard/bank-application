@@ -1,11 +1,15 @@
 package com.nagarro.banking.account.account.repository;
 
-import com.nagarro.banking.account.account.dto.Account;
 
-import java.lang.ScopedValue;
+import com.nagarro.banking.account.account.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AccountRepository extends Jpa {
-    ScopedValue<Account> findByCustomerId(Long aLong);
+import java.util.List;
 
+@Repository
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    List<Account> findByCustomerId(Long customerId);
     void deleteByCustomerId(Long customerId);
 }
+

@@ -17,10 +17,7 @@ public class OpenApiConfig {
                            @Value("${application-description}") String description,
                            @Value("${application-version}") String version,
                            @Value("${application-license}") String license) {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement()
-                        .addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes
-                        ("Bearer Authentication", createAPIKeyScheme()))
+        return new OpenAPI()
                 .info(new Info()
                         .title(title)
                         .description(description)
@@ -28,9 +25,4 @@ public class OpenApiConfig {
                         .license(new License().name(license)));
     }
 
-    private SecurityScheme createAPIKeyScheme() {
-        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
-                .bearerFormat("JWT")
-                .scheme("bearer");
-    }
 }

@@ -2,9 +2,10 @@ package com.nagarro.banking.account.account;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClient
 @SpringBootApplication
+@EnableFeignClients(basePackages = "com.nagarro.banking.account.account.client")  // Specify the base package
 public class AccountApplication {
 
     public static void main(String[] args) {

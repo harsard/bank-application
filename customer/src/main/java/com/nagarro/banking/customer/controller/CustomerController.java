@@ -1,6 +1,6 @@
 package com.nagarro.banking.customer.controller;
 
-import com.nagarro.banking.customer.dto.CustomerDto;
+import com.nagarro.banking.customer.dto.CustomerDTO;
 import com.nagarro.banking.customer.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,36 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final CustomerService service;
 
     @PostMapping
-    public ResponseEntity<CustomerDto> addCustomer(@Valid @RequestBody CustomerDto customerDto) {
-        return ResponseEntity.ok(customerService.addCustomer(customerDto));
+    public CustomerDTO add(@RequestBody CustomerDTO dto) {
+        return service.addCustomer(dto);
     }
 
     @GetMapping
-    public List<CustomerDto> getAllCustomers() {
-        return customerService.getAllCustomers();
+    public List<CustomerDTO> getAll() {
+        return service.getAllCustomers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long id) {
-        return ResponseEntity.ok(customerService.getCustomerById(id));
+    public CustomerDTO getOne(@PathVariable Long id) {
+        return service.getCustomer(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
-        return ResponseEntity.ok(customerService.updateCustomer(id, customerDto));
+    public CustomerDTO update(@PathVariable Long id, @RequestBody CustomerDTO dto) {
+        return service.updateCustomer(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
-        return ResponseEntity.noContent().build();
+    public void delete(@PathVariable Long id) {
+        service.deleteCustomer(id);
     }
 }
-
