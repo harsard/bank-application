@@ -9,6 +9,8 @@ spring:
           search-paths: config
           default-label: main
           clone-on-start: true
+          refresh-rate: 3000
+
 server:
   port: 8888
 
@@ -17,3 +19,5 @@ management:
     web:
       exposure:
         include: refresh
+
+
