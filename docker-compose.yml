@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  eureka-server:
+    image: openjdk:21
+    environment:
+      SPRING_APPLICATION_NAME: eureka-server
+    ports:
+      - "8761:8761"
+
+  config-server:
+    image: openjdk:21
+    environment:
+      SPRING_APPLICATION_NAME: config-server
+    ports:
+      - "8888:8888"
+
+  customer-service:
+    image: openjdk:21
+    depends_on: [eureka-server, config-server]
+    environment:
+      SPRING_APPLICATION_NAME: customer-service
+    ports:
+      - "8081:8081"
+
+  account-service:
+    image: openjdk:21
+    depends_on: [eureka-server, config-server, customer-service]
+    environment:
+      SPRING_APPLICATION_NAME: account-service
+    ports:
+      - "8082:8082"
+
+  api-gateway:
+    image: openjdk:21
+    depends_on: [eureka-server, config-server]
+    environment:
+      SPRING_APPLICATION_NAME: api-gateway
+    ports:
+      - "8080:8080"
