@@ -33,3 +33,9 @@ spring:
 eureka:
   instance:
     prefer-ip-address=true:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"
