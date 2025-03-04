@@ -1,13 +1,9 @@
 package com.nagarro.banking.customer.controller;
 
-import com.nagarro.banking.customer.config.AppConfig;
 import com.nagarro.banking.customer.dto.CustomerDTO;
 import com.nagarro.banking.customer.service.CustomerService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,18 +15,10 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService service;
-    private final AppConfig appConfig;
-
-
 
     @GetMapping("/ping")
-    public String ping(){
+    public String ping() {
         return "pong";
-    }
-
-    @GetMapping("/message")
-    public String getMessage() {
-        return appConfig.getMessage();
     }
 
 

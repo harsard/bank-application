@@ -1,5 +1,5 @@
 
-#### First time execute
+#### First time execute with SDK
 ```
 sdk use java 21.0.6-tem && mvn spring-boot:run
 ```
