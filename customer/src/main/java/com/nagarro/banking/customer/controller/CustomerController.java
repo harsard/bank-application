@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/customers")
 @RequiredArgsConstructor
 @RefreshScope
 public class CustomerController {
-
+    @GetMapping("/ping")
+    public String ping(){
+        return "pong";
+    }
     private final CustomerService service;
     @Value("${message}")
     private String message;
@@ -25,10 +28,7 @@ public class CustomerController {
     public String getMessage() {
         return message;
     }
-    @GetMapping("/ping")
-    public String ping(){
-        return "pong";
-    }
+
 
     @PostMapping
     public CustomerDTO add(@RequestBody CustomerDTO dto) {

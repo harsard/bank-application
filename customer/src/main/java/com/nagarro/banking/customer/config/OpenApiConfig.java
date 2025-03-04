@@ -17,10 +17,11 @@ public class OpenApiConfig {
                            @Value("${application-description}") String description,
                            @Value("${application-version}") String version,
                            @Value("${application-license}") String license) {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement()
-                        .addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes
-                        ("Bearer Authentication", createAPIKeyScheme()))
+        return new OpenAPI()
+//                .addSecurityItem(new SecurityRequirement()
+//                        .addList("Bearer Authentication"))
+//                .components(new Components().addSecuritySchemes
+//                        ("Bearer Authentication", createAPIKeyScheme()))
                 .info(new Info()
                         .title(title)
                         .description(description)
