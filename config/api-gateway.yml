@@ -4,11 +4,11 @@ server:
 spring:
   application:
     name: api-gateway
-  #  config:
-  #    import: "configserver:"
+    config:
+      import: "configserver:"
   cloud:
-    #    config:
-    #      uri: http://localhost:8888
+    config:
+      uri: http://localhost:8888
     gateway:
       discovery:
         locator:
@@ -19,10 +19,10 @@ spring:
           uri: lb://CUSTOMER-SERVICE
           predicates:
             - Path=/api/customers/**
-        - id: product-service
-          uri: lb://PRODUCT-SERVICE
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/api/products/**
+            - Path=/api/accounts/**
 
 eureka:
   client:

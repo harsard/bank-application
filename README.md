@@ -12,8 +12,8 @@ mvn spring-boot:run
 
 1️⃣	Config Server-8888
 2️⃣	Eureka Serve-8761
-3️⃣	Customer Service-8082
-4️⃣	Account Service-8081
+3️⃣	Customer Service-8081
+4️⃣	Account Service-8082
 5️⃣	API Gateway-8080
 
 cd config-server
