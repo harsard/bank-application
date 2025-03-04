@@ -16,13 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @RefreshScope
 public class CustomerController {
+
+    private final CustomerService service;
+
+    @Value("${message}")
+    private String message;
+
     @GetMapping("/ping")
     public String ping(){
         return "pong";
     }
-    private final CustomerService service;
-    @Value("${message}")
-    private String message;
 
     @GetMapping("/message")
     public String getMessage() {

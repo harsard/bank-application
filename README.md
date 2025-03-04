@@ -12,9 +12,9 @@ mvn spring-boot:run
 
 1️⃣	Config Server-8888
 2️⃣	Eureka Serve-8761
-3️⃣	API Gateway-8080
+3️⃣	Customer Service-8082
 4️⃣	Account Service-8081
-5️⃣	Customer Service-8082
+5️⃣	API Gateway-8080
 
 cd config-server
 mvn clean spring-boot:run
@@ -35,8 +35,8 @@ mvn clean spring-boot:run
 Service	Endpoint
 ✅ Account Service	Get All Accounts	curl -X GET http://localhost:8080/account/accounts
 ✅ Account Service	Get Account by ID	curl -X GET http://localhost:8080/account/accounts/1
-✅ Customer Service	Get All Customers	curl -X GET http://localhost:8080/customer/customers
-✅ Customer Service	Get Customer by ID	curl -X GET http://localhost:8080/customer/customers/1
+✅ Customer Service	Get All Customers	curl -X GET http://localhost:8080/api/customers
+✅ Customer Service	Get Customer by ID	curl -X GET http://localhost:8080/api/customers/1
 ✅ Eureka	Check Discovery	Open http://localhost:8761 in browser
 ✅ Config Server	Check Config	curl -X GET http://localhost:8888/account-service/dev
 
