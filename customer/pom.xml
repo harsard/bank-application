@@ -69,7 +69,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope> <!-- lombok should not be part of the final jar -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

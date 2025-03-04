@@ -9,30 +9,3 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-#    gateway:
-#      discovery:
-#        locator:
-#          enabled: true
-#          lower-case-service-id: true
-#      routes:
-#        - id: customer-service
-#          uri: lb://CUSTOMER-SERVICE
-#          predicates:
-#            - Path=/api/customers/**
-#        - id: account-service
-#          uri: lb://ACCOUNT-SERVICE
-#          predicates:
-#            - Path=/api/accounts/**
-
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-#    fetch-registry: true
-#    register-with-eureka: true
-
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"include
