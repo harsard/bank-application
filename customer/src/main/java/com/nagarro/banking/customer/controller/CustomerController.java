@@ -1,5 +1,6 @@
 package com.nagarro.banking.customer.controller;
 
+import com.nagarro.banking.customer.config.AppConfig;
 import com.nagarro.banking.customer.dto.CustomerDTO;
 import com.nagarro.banking.customer.service.CustomerService;
 import jakarta.validation.Valid;
@@ -18,9 +19,9 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService service;
+    private final AppConfig appConfig;
 
-    @Value("${message}")
-    private String message;
+
 
     @GetMapping("/ping")
     public String ping(){
@@ -29,7 +30,7 @@ public class CustomerController {
 
     @GetMapping("/message")
     public String getMessage() {
-        return message;
+        return appConfig.getMessage();
     }
 
 
