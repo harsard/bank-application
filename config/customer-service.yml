@@ -33,10 +33,15 @@ eureka:
   instance:
     prefer-ip-address: true
     home-page-url-path: localhost
+
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: refresh
+  endpoint:
+    health:
+      show-details: always
+
 
 message: hi 1
