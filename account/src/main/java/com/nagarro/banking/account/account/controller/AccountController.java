@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class AccountController {
 
     private final AccountService service;
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "pong";
+    }
 
     @PostMapping("/add-money")
     public AccountDTO addMoney(@RequestParam Long customerId, @RequestParam Double amount) {

@@ -3,6 +3,7 @@ package com.nagarro.banking.customer.service;
 import com.nagarro.banking.customer.client.AccountFeignClient;
 import com.nagarro.banking.customer.dto.CustomerDTO;
 import com.nagarro.banking.customer.entity.Customer;
+import com.nagarro.banking.customer.exception.CustomerNotFoundException;
 import com.nagarro.banking.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,11 @@ public class CustomerService {
     }
 
     public CustomerDTO getCustomer(Long id) {
-        return repository.findById(id).map(this::toDTO)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+        return repository.findById(id)
+                .map(this::toDTO)
+                .orElseThrow(() -> new CustomerNotFoundException(id));  // Throws custom exception
     }
+
 
     public CustomerDTO updateCustomer(Long id, CustomerDTO dto) {
         Customer customer = repository.findById(id).orElseThrow();
